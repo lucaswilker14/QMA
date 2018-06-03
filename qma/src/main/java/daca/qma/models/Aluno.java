@@ -30,7 +30,7 @@ public class Aluno implements Serializable {
 	@NotBlank
 	private String codigo_curso;
 	
-	@Size(min=8, max=8)
+	@Size(min=10, max=10)
 	private String telefone;
 	
 	@NotBlank @Email
