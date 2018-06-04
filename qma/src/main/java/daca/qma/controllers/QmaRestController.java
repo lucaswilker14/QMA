@@ -1,7 +1,9 @@
 package daca.qma.controllers;
 
 import java.util.List;
+
 import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,14 +16,19 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import daca.qma.models.Aluno;
+import daca.qma.models.Tutor;
 import daca.qma.services.AlunoService;
+import daca.qma.services.TutorService;
 
 @RestController
-@RequestMapping("/aluno")
-public class AlunoRestController {
+@RequestMapping("/qma")
+public class QmaRestController {
 	
 	@Autowired
 	private AlunoService as;
+	
+	@Autowired
+	private TutorService ts;
 	
 	//Create - POST
 	@PostMapping("/cadastrarAluno")
@@ -49,9 +56,30 @@ public class AlunoRestController {
 		
 	}
 	
+	
 	//Delete - DELETE
 	@DeleteMapping()
-	public String deletarAluno(@RequestBody Aluno aluno){
+	public String deletarAluno(@RequestBody @Valid Aluno aluno){
 		return as.deleteAluno(aluno);
+	}
+	
+
+	//US-2 - DEFINICAO DOS TUTORES
+	
+	//Tornar Aluno um Tutor
+	@PostMapping("/tornarTutor")
+	public Tutor tornarTutor(@RequestBody @Valid Tutor obj){
+		//criando o tutor e retornando		
+		return ts.tornarTutor(obj);
+	}
+	
+	@GetMapping("/tutor/{matricula}")
+	public Tutor buscarTutorMatricula(@PathVariable("matricula") String matricula_tutor){
+		return ts.findByMatricula(matricula_tutor);
+	}
+	
+	@GetMapping("/tutores")
+	public @ResponseBody List<Tutor> retornarTutores(){
+		return ts.findAllTutores();
 	}
 }
