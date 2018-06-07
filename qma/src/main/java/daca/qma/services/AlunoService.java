@@ -7,26 +7,27 @@ import org.springframework.stereotype.Service;
 
 import daca.qma.models.Aluno;
 import daca.qma.repositoy.AlunoRepository;
+import daca.qma.util.Crud;
 
 @Service
-public class AlunoService implements AlunoServiceInterface {
+public class AlunoService implements /*AlunoServiceInterface*/ Crud<Aluno> {
 
 	@Autowired
 	private AlunoRepository ar;
 	
 	//POST
 	@Override
-	public Aluno cadastraAluno(Aluno aluno) {
+	public Aluno cadastrar(Aluno aluno) {
 		return ar.save(aluno);
 	}
 
 	@Override
-	public List<Aluno> findAllAluno() {
+	public List<Aluno> findAll() {
 		return ar.findAll();
 	}
 
 	@Override
-	public Aluno findById(Long id) {
+	public Aluno findByid(Long id) {
 		return ar.findByid(id);
 	}
 	
@@ -36,19 +37,25 @@ public class AlunoService implements AlunoServiceInterface {
 	}
 
 	@Override
-	public Aluno updateAluno(Aluno novo_aluno, Aluno aluno) {
+	public Aluno update(Aluno novo_aluno, Aluno aluno) {
 		novo_aluno.setMatricula(aluno.getMatricula());
 		novo_aluno.setNome_aluno(aluno.getNome_aluno());
 		novo_aluno.setCodigo_curso(aluno.getCodigo_curso());
 		novo_aluno.setTelefone(aluno.getTelefone());
 		novo_aluno.setEmail(aluno.getEmail());
-		return ar.save(aluno);
+		return ar.save(novo_aluno);
 	}
 	
 	@Override
-	public String deleteAluno(Aluno aluno) {
+	public String delete(String matricula) {
+		Aluno aluno = ar.findByMatricula(matricula);
 		ar.delete(aluno);
 		return "ALUNO DELETADO";
 	}
 
+	@Override
+	public String deleteAll() {
+		ar.deleteAll();
+		return "ALUNOS DELETADOS";
+	}
 }

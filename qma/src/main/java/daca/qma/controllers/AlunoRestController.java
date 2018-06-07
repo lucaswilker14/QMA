@@ -21,25 +21,24 @@ import daca.qma.services.AlunoService;
 import daca.qma.services.TutorService;
 
 @RestController
-@RequestMapping("/qma")
-public class QmaRestController {
+@RequestMapping("/qma/aluno")
+public class AlunoRestController {
+	
+	//US1 - CRUD ALUNO
 	
 	@Autowired
 	private AlunoService as;
 	
-	@Autowired
-	private TutorService ts;
-	
 	//Create - POST
 	@PostMapping("/cadastrarAluno")
 	public Aluno cadastrarAluno(@RequestBody @Valid Aluno aluno){
-		return as.cadastraAluno(aluno);
+		return as.cadastrar(aluno);
 	}
 	
 	//Read - GET ALL
 	@GetMapping(produces="application/json")
 	public @ResponseBody List<Aluno> retornarAlunos(){
-		return as.findAllAluno();
+		return as.findAll();
 	}
 	
 	//Read - GET MATRICULA
@@ -52,34 +51,19 @@ public class QmaRestController {
 	@PutMapping("/editarAluno/{matricula}")
 	public Aluno editarAluno(@PathVariable("matricula") String matricula, @RequestBody @Valid Aluno aluno){
 		Aluno novo_aluno = as.findByMatricula(matricula);
-		return as.updateAluno(novo_aluno, aluno);
+		return as.update(novo_aluno, aluno);
 		
 	}
 	
-	
 	//Delete - DELETE
-	@DeleteMapping()
-	public String deletarAluno(@RequestBody @Valid Aluno aluno){
-		return as.deleteAluno(aluno);
+	@DeleteMapping("/{matricula}")
+	public String deletarAluno(@PathVariable("matricula") String matricula){
+		return as.delete(matricula);
 	}
 	
-
-	//US-2 - DEFINICAO DOS TUTORES
-	
-	//Tornar Aluno um Tutor
-	@PostMapping("/tornarTutor")
-	public Tutor tornarTutor(@RequestBody @Valid Tutor obj){
-		//criando o tutor e retornando		
-		return ts.tornarTutor(obj);
-	}
-	
-	@GetMapping("/tutor/{matricula}")
-	public Tutor buscarTutorMatricula(@PathVariable("matricula") String matricula_tutor){
-		return ts.findByMatricula(matricula_tutor);
-	}
-	
-	@GetMapping("/tutores")
-	public @ResponseBody List<Tutor> retornarTutores(){
-		return ts.findAllTutores();
+	//Delete ALL
+	@DeleteMapping("/deleteAll")
+	public String deleteAll(){
+		return as.deleteAll();
 	}
 }

@@ -24,26 +24,26 @@ public class Aluno implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@NotBlank
-	@Column
+	@Column(name="Matricula")
 	private String matricula;
 	
 	@NotBlank
-	@Column
+	@Column(name="Nome_do_Aluno")
 	private String nome_aluno;
 	
 	@NotBlank
-	@Column
+	@Column(name="Codigo_do_Curso")
 	private String codigo_curso;
 	
 	@Size(min=10, max=10)
-	@Column
+	@Column(name="Telefone")
 	private String telefone;
 	
 	@NotBlank @Email
-	@Column
+	@Column(name="Email")
 	private String email;
 
-	@Column
+	@Column(name="Nota_de_Avalicao")
 	private float nota_avaliacao = 5;
 
 	//	public Aluno(String matricula, String nome_aluno, String codigo_curso, String telefone, String email){
