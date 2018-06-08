@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import daca.qma.models.Tutor;
-import daca.qma.repositoy.TutorRepository;
+import daca.qma.repository.TutorRepository;
 import daca.qma.util.Crud;
 
 @Service
