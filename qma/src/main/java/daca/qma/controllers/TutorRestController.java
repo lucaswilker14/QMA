@@ -56,7 +56,6 @@ public class TutorRestController {
 		return ts.findAll();
 	}
 	
-	//nao ta funcionando
 	@DeleteMapping("/{matricula}")
 	public String deleteTutor(@PathVariable("matricula") String matricula){
 		return ts.delete(matricula);	
