@@ -31,9 +31,16 @@ public class TutorService implements TutorServiceInterface, Crud<Tutor> {
 	}
 
 	@Override
+	public String delete(String matricula) {
+		Tutor tutor = tr.findByMatricula(matricula);
+		tr.delete(tutor);
+		return "TUTOR REMOVIDO";
+	}
+
+	@Override
 	public String deleteAll() {
 		tr.deleteAll();
-		return "Tutores Deletados";
+		return "TUTORES DELETADOS";
 	}
 
 	@Override
@@ -53,12 +60,5 @@ public class TutorService implements TutorServiceInterface, Crud<Tutor> {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
-	@Override
-	public String delete(String matricula) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 
 }

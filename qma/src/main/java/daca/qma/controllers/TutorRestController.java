@@ -35,8 +35,9 @@ public class TutorRestController {
 	//ver a possibilidade de só passar a matricula e recuperar o aluno
 	@PostMapping("/tornarTutor")
 	public Tutor tornarTutor(@RequestBody @Valid Tutor obj) {
-		System.out.println(obj);
-		if (as.findByMatricula(obj.getmatricula()) != null) {
+		Aluno aluno = as.findByMatricula(obj.getMatricula());
+		if (aluno != null) {
+			obj.setAluno(aluno);
 			return ts.tornarTutor(obj);
 		} else {
 			// retorna uma messagem de erro dizendo que o aluno não existe pra

@@ -14,7 +14,7 @@ import javax.validation.constraints.Size;
 
 
 @Entity
-@Table(name="table_Aluno")
+@Table(name="tb_Aluno")
 public class Aluno implements Serializable {
 
 	@Id
@@ -45,6 +45,7 @@ public class Aluno implements Serializable {
 
 	@Column(name="Nota_de_Avalicao")
 	private float nota_avaliacao = 5;
+
 
 	//	public Aluno(String matricula, String nome_aluno, String codigo_curso, String telefone, String email){
 //		

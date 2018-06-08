@@ -16,9 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import daca.qma.models.Aluno;
-import daca.qma.models.Tutor;
 import daca.qma.services.AlunoService;
-import daca.qma.services.TutorService;
 
 @RestController
 @RequestMapping("/qma/aluno")
@@ -36,7 +34,7 @@ public class AlunoRestController {
 	}
 	
 	//Read - GET ALL
-	@GetMapping(produces="application/json")
+	@GetMapping(value = "/listagem",  produces="application/json")
 	public @ResponseBody List<Aluno> retornarAlunos(){
 		return as.findAll();
 	}
