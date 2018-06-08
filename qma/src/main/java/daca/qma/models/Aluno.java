@@ -2,6 +2,7 @@ package daca.qma.models;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -11,8 +12,9 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
+
 @Entity
-@Table(name="table_Aluno")
+@Table(name="tb_Aluno")
 public class Aluno implements Serializable {
 
 	@Id
@@ -22,21 +24,28 @@ public class Aluno implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@NotBlank
+	@Column(name="Matricula")
 	private String matricula;
 	
 	@NotBlank
+	@Column(name="Nome_do_Aluno")
 	private String nome_aluno;
 	
 	@NotBlank
+	@Column(name="Codigo_do_Curso")
 	private String codigo_curso;
 	
 	@Size(min=10, max=10)
+	@Column(name="Telefone")
 	private String telefone;
 	
 	@NotBlank @Email
+	@Column(name="Email")
 	private String email;
 
+	@Column(name="Nota_de_Avalicao")
 	private float nota_avaliacao = 5;
+
 
 	//	public Aluno(String matricula, String nome_aluno, String codigo_curso, String telefone, String email){
 //		

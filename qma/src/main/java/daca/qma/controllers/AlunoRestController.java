@@ -1,7 +1,9 @@
 package daca.qma.controllers;
 
 import java.util.List;
+
 import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,8 +19,10 @@ import daca.qma.models.Aluno;
 import daca.qma.services.AlunoService;
 
 @RestController
-@RequestMapping("/aluno")
+@RequestMapping("/qma/aluno")
 public class AlunoRestController {
+	
+	//US1 - CRUD ALUNO
 	
 	@Autowired
 	private AlunoService as;
@@ -26,13 +30,13 @@ public class AlunoRestController {
 	//Create - POST
 	@PostMapping("/cadastrarAluno")
 	public Aluno cadastrarAluno(@RequestBody @Valid Aluno aluno){
-		return as.cadastraAluno(aluno);
+		return as.cadastrar(aluno);
 	}
 	
 	//Read - GET ALL
-	@GetMapping(produces="application/json")
+	@GetMapping(value = "/listagem",  produces="application/json")
 	public @ResponseBody List<Aluno> retornarAlunos(){
-		return as.findAllAluno();
+		return as.findAll();
 	}
 	
 	//Read - GET MATRICULA
@@ -45,13 +49,19 @@ public class AlunoRestController {
 	@PutMapping("/editarAluno/{matricula}")
 	public Aluno editarAluno(@PathVariable("matricula") String matricula, @RequestBody @Valid Aluno aluno){
 		Aluno novo_aluno = as.findByMatricula(matricula);
-		return as.updateAluno(novo_aluno, aluno);
+		return as.update(novo_aluno, aluno);
 		
 	}
 	
 	//Delete - DELETE
-	@DeleteMapping()
-	public String deletarAluno(@RequestBody Aluno aluno){
-		return as.deleteAluno(aluno);
+	@DeleteMapping("/{matricula}")
+	public String deletarAluno(@PathVariable("matricula") String matricula){
+		return as.delete(matricula);
+	}
+	
+	//Delete ALL
+	@DeleteMapping("/deleteAll")
+	public String deleteAll(){
+		return as.deleteAll();
 	}
 }
