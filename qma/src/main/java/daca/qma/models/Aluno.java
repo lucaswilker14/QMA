@@ -14,7 +14,7 @@ import javax.validation.constraints.Size;
 
 
 @Entity
-@Table(name="tb_Aluno")
+@Table(name="tb_aluno")
 public class Aluno implements Serializable {
 
 	@Id
@@ -45,7 +45,13 @@ public class Aluno implements Serializable {
 
 	@Column(name="Nota_de_Avalicao")
 	private float nota_avaliacao = 5;
-
+	
+//	@ManyToMany
+//	@JoinTable(name = "tb_alunos_tutores", joinColumns = @JoinColumn(name = "aluno_id"), inverseJoinColumns = @JoinColumn(name = "tutor_id	"))
+//	private List<Tutor> tutores = new ArrayList<Tutor>();
+	
+	
+	
 
 	//	public Aluno(String matricula, String nome_aluno, String codigo_curso, String telefone, String email){
 //		

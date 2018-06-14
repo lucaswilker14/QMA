@@ -8,10 +8,13 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.Range;
 
 @Entity
 @Table(name = "tb_tutor")
@@ -30,16 +33,16 @@ public class Tutor implements Serializable {
 	private String disciplina;
 
 	@NotNull
+	@Range(min=1, max=5)
 	private float proficiencia;
 
 	private float nota_avaliacao_tutor = 4;
 
 	private float dinheiro = 0;
 	
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "ALUNO_ID")
-	private Aluno aluno;
-	
+	@OneToOne(cascade = CascadeType.PERSIST)
+	@JoinTable(name = "tb_aluno_tutor", joinColumns = @JoinColumn(name = "fk_tutor_id"), inverseJoinColumns = @JoinColumn(name = "fk_aluno_id"))
+	private Aluno aluno_tutor;
 
 	@Override
 	public String toString() {
@@ -95,13 +98,13 @@ public class Tutor implements Serializable {
 	public void setDinheiro(float dinheiro) {
 		this.dinheiro = dinheiro;
 	}
-
-	public Aluno getAluno() {
-		return aluno;
+	
+	public Aluno getAluno_tutor() {
+		return aluno_tutor;
 	}
 
-	public void setAluno(Aluno aluno) {
-		this.aluno = aluno;
+	public void setAluno_tutor(Aluno aluno_tutor) {
+		this.aluno_tutor = aluno_tutor;
 	}
 
 	public static long getSerialversionuid() {
