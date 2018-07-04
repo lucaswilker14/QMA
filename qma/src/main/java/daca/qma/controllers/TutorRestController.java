@@ -37,7 +37,7 @@ public class TutorRestController {
 	public Tutor tornarTutor(@RequestBody @Valid Tutor obj) {
 		Aluno aluno = as.findByMatricula(obj.getMatricula());
 		if (aluno != null) {
-			obj.setAluno(aluno);
+			obj.setAluno_tutor(aluno);
 			return ts.tornarTutor(obj);
 		} else {
 			// retorna uma messagem de erro dizendo que o aluno não existe pra

@@ -46,7 +46,7 @@ public class AlunoRestController {
 	}
 	
 	//Update - PUT
-	@PutMapping("/editarAluno/{matricula}")
+	@PutMapping("/{matricula}")
 	public Aluno editarAluno(@PathVariable("matricula") String matricula, @RequestBody @Valid Aluno aluno){
 		Aluno novo_aluno = as.findByMatricula(matricula);
 		return as.update(novo_aluno, aluno);
