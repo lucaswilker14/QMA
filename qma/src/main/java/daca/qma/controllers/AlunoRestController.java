@@ -28,7 +28,7 @@ public class AlunoRestController {
 	private AlunoService as;
 	
 	//Create - POST
-	@PostMapping("/cadastrarAluno")
+	@PostMapping
 	public Aluno cadastrarAluno(@RequestBody @Valid Aluno aluno){
 		return as.cadastrar(aluno);
 	}
