@@ -12,6 +12,8 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 @Entity
 @Table(name="tb_aluno")
@@ -45,6 +47,10 @@ public class Aluno implements Serializable {
 
 	@Column(name="Nota_de_Avalicao")
 	private float nota_avaliacao = 5;
+	
+	@JsonIgnore
+    @NotBlank
+    private String senha;
 	
 //	@ManyToMany
 //	@JoinTable(name = "tb_alunos_tutores", joinColumns = @JoinColumn(name = "aluno_id"), inverseJoinColumns = @JoinColumn(name = "tutor_id	"))
@@ -142,4 +148,14 @@ public class Aluno implements Serializable {
 	public void setNota_avaliacao(float nota_avaliacao) {
 		this.nota_avaliacao = nota_avaliacao;
 	}
+
+	public String getSenha() {
+		return senha;
+	}
+
+	public void setSenha(String senha) {
+		this.senha = senha;
+	}
+	
+	
 }
