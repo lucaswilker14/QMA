@@ -19,9 +19,10 @@ public class AlunoDetailsService implements UserDetailsService {
 	
 	@Override
 	@Transactional
-	public AlunoPrincipal loadUserByUsername(String matricula) throws UsernameNotFoundException {
+	public UserDetails loadUserByUsername(String matriculaOrEmail) throws UsernameNotFoundException {
 		
-		Aluno aluno = ar.findByMatricula(matricula);
+//		Aluno aluno = ar.findByMatricula(matricula);
+		Aluno aluno = ar.findByMatriculaOrEmail(matriculaOrEmail, matriculaOrEmail);
 		return AlunoPrincipal.create(aluno);
 				
 	}
@@ -30,7 +31,6 @@ public class AlunoDetailsService implements UserDetailsService {
     @Transactional
     public AlunoPrincipal loadUserById(Long id) {
         Aluno aluno = ar.findByid(id);
-
         return AlunoPrincipal.create(aluno);
     }
 

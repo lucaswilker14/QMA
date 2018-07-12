@@ -10,11 +10,6 @@ import org.springframework.web.bind.annotation.RestController;
 @EnableAutoConfiguration
 @RestController
 public class QmaApplication {
-
-	@RequestMapping("/")
-    String hello() {
-        return "hello world";
-    }
 	
 	public static void main(String[] args) {
 		SpringApplication.run(QmaApplication.class, args);
