@@ -58,4 +58,12 @@ public class AlunoService implements /*AlunoServiceInterface*/ Crud<Aluno> {
 		ar.deleteAll();
 		return "ALUNOS DELETADOS";
 	}
+	
+	public boolean verificaEmail(String email) {
+		return ar.existsByEmail(email);
+	}
+	
+	public boolean verificaMatricula(String email) {
+		return ar.existsByMatricula(email);
+	}
 }

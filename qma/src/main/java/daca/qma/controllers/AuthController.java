@@ -25,6 +25,7 @@ import daca.qma.payload.LoginRequest;
 import daca.qma.payload.SignUpRequest;
 import daca.qma.repository.AlunoRepository;
 import daca.qma.security.JwtTokenProvider;
+import daca.qma.services.AlunoService;
 
 @RestController
 @RequestMapping("/qma/auth")
@@ -34,16 +35,17 @@ public class AuthController {
 	AuthenticationManager authenticationManager;
 
 	@Autowired
-	AlunoRepository alunoRepository;
+	private AlunoService as;
 
 	@Autowired
 	PasswordEncoder passwordEncoder;
 
 	@Autowired
 	JwtTokenProvider tokenProvider;
+	
 
 	// LOGIN
-	@PostMapping("/login")
+	@PostMapping("/signin")
 	public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
 
 		Authentication authentication = authenticationManager.authenticate(
@@ -58,21 +60,22 @@ public class AuthController {
 	// CADASTRAR ALUNO NO SISTEMA
 	@PostMapping("/signup")
 	public ResponseEntity<?> registerUser(@RequestBody SignUpRequest signUpRequest) {
-		if (alunoRepository.existsByMatricula(signUpRequest.getMatricula())) {
+		
+		if (as.verificaMatricula(signUpRequest.getMatricula())) {
 			return new ResponseEntity(new ApiResponse(false, "Username is already taken!"), HttpStatus.BAD_REQUEST);
 		}
 
-		if (alunoRepository.existsByEmail(signUpRequest.getEmail())) {
+		if (as.verificaEmail(signUpRequest.getEmail())) {
 			return new ResponseEntity(new ApiResponse(false, "Email Address already in use!"), HttpStatus.BAD_REQUEST);
 		}
 
-		// Creating user's account
 		Aluno aluno = new Aluno(signUpRequest.getMatricula(), signUpRequest.getNome_aluno(),
-				signUpRequest.getCodigo_curso(), signUpRequest.getTelefone(), signUpRequest.getEmail(), signUpRequest.getSenha());
-
+				signUpRequest.getCodigo_curso(), signUpRequest.getTelefone(), signUpRequest.getEmail(),
+				signUpRequest.getSenha());
+		
 		aluno.setSenha(passwordEncoder.encode(aluno.getSenha()));
 
-		Aluno result = alunoRepository.save(aluno);
+		Aluno result = as.cadastrar(aluno);
 
 		URI location = ServletUriComponentsBuilder.fromCurrentContextPath().path("/qma/aluno/{matricula}")
 				.buildAndExpand(result.getMatricula()).toUri();

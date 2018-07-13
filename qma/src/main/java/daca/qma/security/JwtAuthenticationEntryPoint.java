@@ -12,12 +12,17 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.stereotype.Component;
 
+/**
+ * 
+ * @author lucas_wilker
+ * Class responsible for throwing user an exception if unauthorized
+ * Error 401
+ */
+
 @Component
 public class JwtAuthenticationEntryPoint implements AuthenticationEntryPoint {
 
-	
     private static final Logger logger = LoggerFactory.getLogger(JwtAuthenticationEntryPoint.class);
-
 	
 	@Override
 	public void commence(HttpServletRequest req, HttpServletResponse res, AuthenticationException authEx)

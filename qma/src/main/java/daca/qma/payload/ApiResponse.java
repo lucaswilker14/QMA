@@ -1,5 +1,12 @@
 package daca.qma.payload;
 
+/**
+ * confirmation message of registration
+ * 
+ * @author lucas_wilker
+ *
+ */
+
 public class ApiResponse {
 	
 	private Boolean success;

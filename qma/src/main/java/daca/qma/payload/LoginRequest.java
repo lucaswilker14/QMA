@@ -2,6 +2,12 @@ package daca.qma.payload;
 
 import javax.validation.constraints.NotBlank;
 
+/**
+ * define what login will be and what fields
+ * @author lucas_wilker
+ *
+ */
+
 public class LoginRequest {
 	
 	@NotBlank

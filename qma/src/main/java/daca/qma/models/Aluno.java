@@ -57,7 +57,8 @@ public class Aluno implements Serializable {
 	// "aluno_id"), inverseJoinColumns = @JoinColumn(name = "tutor_id "))
 	// private List<Tutor> tutores = new ArrayList<Tutor>();
 
-	public Aluno(String matricula, String nome_aluno, String codigo_curso, String telefone, String email, String senha) {
+	public Aluno(String matricula, String nome_aluno, String codigo_curso, String telefone, String email,
+			String senha) {
 
 		this.matricula = matricula;
 		this.nome_aluno = nome_aluno;
@@ -66,18 +67,9 @@ public class Aluno implements Serializable {
 		this.email = email;
 		this.senha = senha;
 	}
-	
-	//
-	// public Aluno(String matricula, String nome_aluno, String codigo_curso, String
-	// email){
-	//
-	// this.matricula = matricula;
-	// this.nome_aluno = nome_aluno;
-	// this.codigo_curso = codigo_curso;
-	// this.email = email;
-	// this.nota_avalicao = 5;
-	// }
-	//
+
+	public Aluno() {
+	}
 
 	@Override
 	public String toString() {

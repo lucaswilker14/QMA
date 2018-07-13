@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import daca.qma.models.Aluno;
 import daca.qma.models.Tutor;
+import daca.qma.security.CurrentUser;
 import daca.qma.services.AlunoService;
 import daca.qma.services.TutorService;
 
@@ -34,10 +35,10 @@ public class TutorRestController {
 	// Tornar Aluno um Tutor
 	//ver a possibilidade de só passar a matricula e recuperar o aluno
 	@PostMapping("/tornarTutor")
-	public Tutor tornarTutor(@RequestBody @Valid Tutor obj) {
-		Aluno aluno = as.findByMatricula(obj.getMatricula());
+	public Tutor tornarTutor(@RequestBody @Valid Tutor obj, @CurrentUser Aluno aluno) {
 		if (aluno != null) {
-			obj.setAluno_tutor(aluno);
+			Tutor tutor = new Tutor(aluno.getMatricula(), obj.getDisciplina(), obj.getProficiencia());
+			tutor.setAluno_tutor(aluno);
 			return ts.tornarTutor(obj);
 		} else {
 			// retorna uma messagem de erro dizendo que o aluno não existe pra

@@ -10,6 +10,12 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import daca.qma.models.Aluno;
 
+/**
+ * 
+ * @author lucas_wilker
+ * Responsible for returning custom mode instances 
+ */
+
 public class AlunoPrincipal implements UserDetails {
 
 	private Long id;
@@ -50,9 +56,6 @@ public class AlunoPrincipal implements UserDetails {
                 
         );
     }
-	
-	
-   
 	
 	public Long getId() {
 		return id;

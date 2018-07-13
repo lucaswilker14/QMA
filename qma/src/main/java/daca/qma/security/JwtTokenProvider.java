@@ -16,6 +16,13 @@ import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.SignatureException;
 import io.jsonwebtoken.UnsupportedJwtException;
 
+/**
+ * 
+ * @author lucas_wilker
+ *
+ * Generate and validate the token after login
+ */
+
 @Component
 public class JwtTokenProvider {
 

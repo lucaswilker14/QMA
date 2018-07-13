@@ -11,11 +11,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import daca.qma.models.Aluno;
+import daca.qma.security.CurrentUser;
 import daca.qma.services.AlunoService;
 
 @RestController
@@ -27,11 +29,11 @@ public class AlunoRestController {
 	@Autowired
 	private AlunoService as;
 	
-	//Create - POST
-	@PostMapping
-	public Aluno cadastrarAluno(@RequestBody @Valid Aluno aluno){
-		return as.cadastrar(aluno);
-	}
+//	//Create - POST
+//	@PostMapping
+//	public Aluno cadastrarAluno(@RequestBody @Valid Aluno aluno){
+//		return as.cadastrar(aluno);
+//	}
 	
 	//Read - GET ALL
 	@GetMapping(value = "/listagem",  produces="application/json")

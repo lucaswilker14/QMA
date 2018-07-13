@@ -1,5 +1,11 @@
 package daca.qma.payload;
 
+
+/**
+ * token confirmation message generated
+ * @author lucas_wilker
+ *
+ */
 public class JwtAuthenticationResponse {
 	
 	private String accessToken;

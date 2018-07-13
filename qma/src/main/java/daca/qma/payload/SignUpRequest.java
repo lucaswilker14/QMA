@@ -6,6 +6,12 @@ import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+/**
+ * 
+ * @author lucas_wilker
+ * define what login will be and what fields
+ */
+
 public class SignUpRequest {
 
 	@NotBlank

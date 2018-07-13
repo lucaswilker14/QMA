@@ -44,12 +44,21 @@ public class Tutor implements Serializable {
 	@JoinTable(name = "tb_aluno_tutor", joinColumns = @JoinColumn(name = "fk_tutor_id"), inverseJoinColumns = @JoinColumn(name = "fk_aluno_id"))
 	private Aluno aluno_tutor;
 
-	@Override
-	public String toString() {
-		String impressao;
-		impressao = this.matricula + " - " + this.disciplina + " - " + this.proficiencia;
-		return impressao;
+	public Tutor() {}
+	
+	public Tutor(String matricula, String disciplina, float proficiencia) {
+		
+		this.matricula = matricula;
+		this.disciplina = disciplina;
+		this.proficiencia = proficiencia;
 	}
+	
+//	@Override
+//	public String toString() {
+//		String impressao;
+//		impressao = this.matricula + " - " + this.disciplina + " - " + this.proficiencia;
+//		return impressao;
+//	}
 
 	public Long getId() {
 		return id;
@@ -59,13 +68,13 @@ public class Tutor implements Serializable {
 		this.id = id;
 	}
 
-	public String getMatricula() {
-		return matricula;
-	}
-
-	public void setMatricula(String matricula) {
-		this.matricula = matricula;
-	}
+//	public String getMatricula() {
+//		return matricula;
+//	}
+//
+//	public void setMatricula(String matricula) {
+//		this.matricula = matricula;
+//	}
 
 	public String getDisciplina() {
 		return disciplina;
