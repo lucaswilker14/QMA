@@ -8,34 +8,34 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 /**
  * 
- * @author lucas_wilker
- * define what login will be and what fields
+ * @author lucas_wilker define what login will be and what fields
  */
 
 public class SignUpRequest {
 
 	@NotBlank
-    @Size(min=9, max = 9)
+	@Size(min = 9, max = 9)
 	private String matricula;
-	
+
 	@NotBlank
-	@Size(min=3, max = 30)
+	@Size(min = 3, max = 30)
 	private String nome_aluno;
-	
+
 	@NotBlank
-	@Size(min=5, max = 5)
+	@Size(min = 5, max = 5)
 	private String codigo_curso;
-	
-	@Size(min=10, max=11)
+
+	@Size(min = 10, max = 11)
 	private String telefone;
-	
-	@NotBlank @Email
-	@Size(max=40)
+
+	@NotBlank
+	@Email
+	@Size(max = 40)
 	private String email;
 
 	@NotBlank
-    @Size(min=6)
-    private String senha;
+	@Size(min = 6)
+	private String senha;
 
 	public String getMatricula() {
 		return matricula;

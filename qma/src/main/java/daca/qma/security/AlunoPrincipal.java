@@ -12,8 +12,7 @@ import daca.qma.models.Aluno;
 
 /**
  * 
- * @author lucas_wilker
- * Responsible for returning custom mode instances 
+ * @author lucas_wilker Responsible for returning custom mode instances
  */
 
 public class AlunoPrincipal implements UserDetails {
@@ -32,7 +31,6 @@ public class AlunoPrincipal implements UserDetails {
 
 	private Collection<? extends GrantedAuthority> authorities;
 
-	
 	public AlunoPrincipal(Long id, String nome, String matricula, String email, String senha,
 			Collection<? extends GrantedAuthority> authorities) {
 		this.id = id;
@@ -43,20 +41,14 @@ public class AlunoPrincipal implements UserDetails {
 		this.authorities = authorities;
 	}
 
-
 	public static AlunoPrincipal create(Aluno aluno) {
-       
-        return new AlunoPrincipal(
-                aluno.getId(),
-                aluno.getNome_aluno(),
-                aluno.getMatricula(),
-                aluno.getEmail(),
-                aluno.getSenha(),
-                null
-                
-        );
-    }
-	
+
+		return new AlunoPrincipal(aluno.getId(), aluno.getNome_aluno(), aluno.getMatricula(), aluno.getEmail(),
+				aluno.getSenha(), null
+
+		);
+	}
+
 	public Long getId() {
 		return id;
 	}
@@ -73,13 +65,12 @@ public class AlunoPrincipal implements UserDetails {
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		return null;
 	}
-		
+
 	@Override
 	public String getPassword() {
 		return this.senha;
 	}
-	
-	
+
 	@Override
 	public String getUsername() {
 		return this.matricula;
@@ -104,19 +95,20 @@ public class AlunoPrincipal implements UserDetails {
 	public boolean isEnabled() {
 		return true;
 	}
-	
+
 	@Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        AlunoPrincipal that = (AlunoPrincipal) o;
-        return Objects.equals(id, that.id);
-    }
+	public boolean equals(Object o) {
+		if (this == o)
+			return true;
+		if (o == null || getClass() != o.getClass())
+			return false;
+		AlunoPrincipal that = (AlunoPrincipal) o;
+		return Objects.equals(id, that.id);
+	}
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(id);
-    }
-
+	@Override
+	public int hashCode() {
+		return Objects.hash(id);
+	}
 
 }

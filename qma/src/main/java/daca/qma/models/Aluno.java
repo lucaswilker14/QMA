@@ -24,32 +24,32 @@ public class Aluno implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	@NotBlank
+	// @NotBlank
 	@Column(name = "Matricula")
 	private String matricula;
 
-	@NotBlank
-	@Column(name = "Nome_do_Aluno")
+	// @NotBlank
+	@Column(name = "Nome_Aluno")
 	private String nome_aluno;
 
-	@NotBlank
-	@Column(name = "Codigo_do_Curso")
+	// @NotBlank
+	@Column(name = "Codigo_Curso")
 	private String codigo_curso;
 
 	@Size(min = 10, max = 10)
 	@Column(name = "Telefone")
 	private String telefone;
 
-	@NotBlank
+	// @NotBlank
 	@Email
 	@Column(name = "Email")
 	private String email;
 
-	@Column(name = "Nota_de_Avalicao")
+	@Column(name = "Nota_Avalicao")
 	private float nota_avaliacao = 5;
 
 	@JsonIgnore
-	@NotBlank
+	// @NotBlank
 	private String senha;
 
 	// @ManyToMany
@@ -68,8 +68,7 @@ public class Aluno implements Serializable {
 		this.senha = senha;
 	}
 
-	public Aluno() {
-	}
+	public Aluno() {}
 
 	@Override
 	public String toString() {

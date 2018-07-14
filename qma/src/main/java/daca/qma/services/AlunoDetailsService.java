@@ -16,7 +16,7 @@ import daca.qma.security.AlunoPrincipal;
  * 
  * @author lucas_wilker
  * 
- * Loads user data by registration or email
+ *         Loads user data by registration or email
  *
  */
 
@@ -24,25 +24,25 @@ import daca.qma.security.AlunoPrincipal;
 public class AlunoDetailsService implements UserDetailsService {
 
 	@Autowired
-	AlunoRepository ar;
-	
+	AlunoService as;
+
 	/**
 	 * Allows you to sign in with registration or email
 	 */
 	@Override
 	@Transactional
 	public UserDetails loadUserByUsername(String matriculaOrEmail) throws UsernameNotFoundException {
-		
-		Aluno aluno = ar.findByMatriculaOrEmail(matriculaOrEmail, matriculaOrEmail);
+
+		Aluno aluno = as.findByMatriculaOrEmail(matriculaOrEmail);
 		return AlunoPrincipal.create(aluno);
-				
+
 	}
-	
+
 	// This method is used by JWTAuthenticationFilter
-    @Transactional
-    public AlunoPrincipal loadUserById(Long id) {
-        Aluno aluno = ar.findByid(id);
-        return AlunoPrincipal.create(aluno);
-    }
+	@Transactional
+	public AlunoPrincipal loadUserById(Long id) {
+		Aluno aluno = as.findByid(id);
+		return AlunoPrincipal.create(aluno);
+	}
 
 }

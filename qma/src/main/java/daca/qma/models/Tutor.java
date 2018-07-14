@@ -26,39 +26,41 @@ public class Tutor implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
-	@NotBlank
+	// @NotBlank
 	private String matricula;
 
 	@NotBlank
 	private String disciplina;
 
 	@NotNull
-	@Range(min=1, max=5)
+	@Range(min = 1, max = 5)
 	private float proficiencia;
 
-	private float nota_avaliacao_tutor = 4;
+	private float nota_aval_tutor = 4;
 
 	private float dinheiro = 0;
-	
-	@OneToOne(cascade = CascadeType.PERSIST)
+
+	@OneToOne(cascade = CascadeType.MERGE)
 	@JoinTable(name = "tb_aluno_tutor", joinColumns = @JoinColumn(name = "fk_tutor_id"), inverseJoinColumns = @JoinColumn(name = "fk_aluno_id"))
 	private Aluno aluno_tutor;
 
-	public Tutor() {}
-	
+	public Tutor() {
+	}
+
 	public Tutor(String matricula, String disciplina, float proficiencia) {
-		
+
 		this.matricula = matricula;
 		this.disciplina = disciplina;
 		this.proficiencia = proficiencia;
 	}
-	
-//	@Override
-//	public String toString() {
-//		String impressao;
-//		impressao = this.matricula + " - " + this.disciplina + " - " + this.proficiencia;
-//		return impressao;
-//	}
+
+	// @Override
+	// public String toString() {
+	// String impressao;
+	// impressao = this.matricula + " - " + this.disciplina + " - " +
+	// this.proficiencia;
+	// return impressao;
+	// }
 
 	public Long getId() {
 		return id;
@@ -68,13 +70,13 @@ public class Tutor implements Serializable {
 		this.id = id;
 	}
 
-//	public String getMatricula() {
-//		return matricula;
-//	}
-//
-//	public void setMatricula(String matricula) {
-//		this.matricula = matricula;
-//	}
+	public String getMatricula() {
+		return matricula;
+	}
+
+	public void setMatricula(String matricula) {
+		this.matricula = matricula;
+	}
 
 	public String getDisciplina() {
 		return disciplina;
@@ -92,12 +94,12 @@ public class Tutor implements Serializable {
 		this.proficiencia = proficiencia;
 	}
 
-	public float getNota_avaliacao_tutor() {
-		return nota_avaliacao_tutor;
+	public float getNota_aval_tutor() {
+		return nota_aval_tutor;
 	}
-	
-	public void setNota_avaliacao_tutor(float nota_avaliacao_tutor) {
-		this.nota_avaliacao_tutor = nota_avaliacao_tutor;
+
+	public void setNota_aval_tutor(float nota_avaliacao_tutor) {
+		this.nota_aval_tutor = nota_avaliacao_tutor;
 	}
 
 	public float getDinheiro() {
@@ -107,7 +109,7 @@ public class Tutor implements Serializable {
 	public void setDinheiro(float dinheiro) {
 		this.dinheiro = dinheiro;
 	}
-	
+
 	public Aluno getAluno_tutor() {
 		return aluno_tutor;
 	}

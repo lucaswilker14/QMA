@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 @EnableAutoConfiguration
 @RestController
 public class QmaApplication {
-	
+
 	public static void main(String[] args) {
 		SpringApplication.run(QmaApplication.class, args);
 	}

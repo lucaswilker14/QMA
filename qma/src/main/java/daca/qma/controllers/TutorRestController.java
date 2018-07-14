@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import daca.qma.models.Aluno;
 import daca.qma.models.Tutor;
+import daca.qma.security.AlunoPrincipal;
 import daca.qma.security.CurrentUser;
 import daca.qma.services.AlunoService;
 import daca.qma.services.TutorService;
@@ -26,20 +27,21 @@ public class TutorRestController {
 
 	@Autowired
 	private AlunoService as;
-	
+
 	@Autowired
 	private TutorService ts;
 
 	// US-2 - DEFINICAO DOS TUTORES
 
 	// Tornar Aluno um Tutor
-	//ver a possibilidade de só passar a matricula e recuperar o aluno
+	// ver a possibilidade de só passar a matricula e recuperar o aluno
 	@PostMapping("/tornarTutor")
-	public Tutor tornarTutor(@RequestBody @Valid Tutor obj, @CurrentUser Aluno aluno) {
-		if (aluno != null) {
-			Tutor tutor = new Tutor(aluno.getMatricula(), obj.getDisciplina(), obj.getProficiencia());
+	public Tutor tornarTutor(@RequestBody @Valid Tutor obj, @CurrentUser AlunoPrincipal alunoP) {
+		if (alunoP != null) {
+			Tutor tutor = new Tutor(alunoP.getUsername(), obj.getDisciplina(), obj.getProficiencia());
+			Aluno aluno = as.findByMatricula(alunoP.getUsername());
 			tutor.setAluno_tutor(aluno);
-			return ts.tornarTutor(obj);
+			return ts.tornarTutor(tutor);
 		} else {
 			// retorna uma messagem de erro dizendo que o aluno não existe pra
 			// ser tutor e tal...
@@ -56,14 +58,14 @@ public class TutorRestController {
 	public @ResponseBody List<Tutor> retornarTutores() {
 		return ts.findAll();
 	}
-	
+
 	@DeleteMapping("/{matricula}")
-	public String deleteTutor(@PathVariable("matricula") String matricula){
-		return ts.delete(matricula);	
+	public String deleteTutor(@PathVariable("matricula") String matricula) {
+		return ts.delete(matricula);
 	}
-	
+
 	@DeleteMapping("/deleteAll")
-	public String deleteAll(){
+	public String deleteAll() {
 		return ts.deleteAll();
 	}
 }

@@ -42,7 +42,6 @@ public class AuthController {
 
 	@Autowired
 	JwtTokenProvider tokenProvider;
-	
 
 	// LOGIN
 	@PostMapping("/signin")
@@ -60,7 +59,7 @@ public class AuthController {
 	// CADASTRAR ALUNO NO SISTEMA
 	@PostMapping("/signup")
 	public ResponseEntity<?> registerUser(@RequestBody SignUpRequest signUpRequest) {
-		
+
 		if (as.verificaMatricula(signUpRequest.getMatricula())) {
 			return new ResponseEntity(new ApiResponse(false, "Username is already taken!"), HttpStatus.BAD_REQUEST);
 		}
@@ -72,7 +71,7 @@ public class AuthController {
 		Aluno aluno = new Aluno(signUpRequest.getMatricula(), signUpRequest.getNome_aluno(),
 				signUpRequest.getCodigo_curso(), signUpRequest.getTelefone(), signUpRequest.getEmail(),
 				signUpRequest.getSenha());
-		
+
 		aluno.setSenha(passwordEncoder.encode(aluno.getSenha()));
 
 		Aluno result = as.cadastrar(aluno);

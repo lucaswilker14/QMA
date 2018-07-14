@@ -20,7 +20,8 @@ import daca.qma.services.AlunoDetailsService;
  * 
  * @author lucas_wilker
  *
- * Main class for the token. Get the request token, validate it, oad the user associated with the token, and pass it to Spring Security
+ *         Main class for the token. Get the request token, validate it, oad the
+ *         user associated with the token, and pass it to Spring Security
  */
 
 public class JwtAuthenticationFilter extends OncePerRequestFilter {

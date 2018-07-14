@@ -4,17 +4,18 @@ import javax.validation.constraints.NotBlank;
 
 /**
  * define what login will be and what fields
+ * 
  * @author lucas_wilker
  *
  */
 
 public class LoginRequest {
-	
-	@NotBlank
-    private String matricula;
 
-    @NotBlank
-    private String senha;
+	@NotBlank
+	private String matricula;
+
+	@NotBlank
+	private String senha;
 
 	public String getMatricula() {
 		return matricula;
@@ -32,5 +33,4 @@ public class LoginRequest {
 		this.senha = senha;
 	}
 
-    
 }

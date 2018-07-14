@@ -28,7 +28,8 @@ import daca.qma.services.AlunoDetailsService;
 /**
  * @author lucas_wilker
  *
- * This class has all the necessary configurations for web security of the project
+ *         This class has all the necessary configurations for web security of
+ *         the project
  */
 
 @Configuration
@@ -68,22 +69,22 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		http.cors().and().csrf().disable().exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
 				.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().authorizeRequests()
-				.antMatchers(HttpMethod.POST, "/qma/auth/**").permitAll().anyRequest().authenticated();
+				.antMatchers("/qma/auth/**").permitAll().anyRequest().authenticated();
 
 		// add the jwt filter
 		http.addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
 	}
-	
-	@Bean
-    CorsConfigurationSource corsConfigurationSource() {
-        CorsConfiguration config = new CorsConfiguration();
 
-        config.setAllowedOrigins(Arrays.asList("*"));
-        config.setAllowedMethods(Arrays.asList("GET","POST", "DELETE", "PUT", "OPTIONS"));
-        config.setAllowedHeaders(Arrays.asList("Content-type", "Access-Control-Allow-Origin", "Authorization"));
-        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        source.registerCorsConfiguration("/**", config);
-        return source;
-    }
+	@Bean
+	CorsConfigurationSource corsConfigurationSource() {
+		CorsConfiguration config = new CorsConfiguration();
+
+		config.setAllowedOrigins(Arrays.asList("*"));
+		config.setAllowedMethods(Arrays.asList("GET", "POST", "DELETE", "PUT", "OPTIONS"));
+		config.setAllowedHeaders(Arrays.asList("Content-type", "Access-Control-Allow-Origin", "Authorization"));
+		UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+		source.registerCorsConfiguration("/**", config);
+		return source;
+	}
 
 }

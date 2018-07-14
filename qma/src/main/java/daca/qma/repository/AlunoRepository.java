@@ -8,15 +8,15 @@ import java.lang.String;
 import java.util.List;
 
 @Repository
-public interface AlunoRepository extends JpaRepository<Aluno, Long>{
+public interface AlunoRepository extends JpaRepository<Aluno, Long> {
 
 	Aluno findByid(Long id);
-	
+
 	Aluno findByMatricula(String matricula);
-	
+
 	Aluno findByMatriculaOrEmail(String matricula, String email);
-	
+
 	boolean existsByMatricula(String matricula);
-	
+
 	boolean existsByEmail(String email);
 }

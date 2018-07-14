@@ -8,10 +8,10 @@ import java.lang.annotation.*;
  * @author lucas_wilker
  * @annotation
  * 
- * To access the currently authenticated user in the controllers
+ * 			To access the currently authenticated user in the controllers
  */
 
-@Target({ElementType.PARAMETER, ElementType.TYPE})
+@Target({ ElementType.PARAMETER, ElementType.TYPE })
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 @AuthenticationPrincipal
