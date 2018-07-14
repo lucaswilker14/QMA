@@ -2,27 +2,27 @@ package daca.qma.util;
 
 import java.util.List;
 
-public interface Crud<T>{
+public interface Crud<T> {
 
-	//post
+	// post
 	T cadastrar(T objeto);
-	
-	//getAll
+
+	// getAll
 	List<T> findAll();
-	
-	//getId
+
+	// getId
 	T findByid(Long id);
-	
-	//getMatricula
+
+	// getMatricula
 	T findByMatricula(String matricula);
-	
-	//update
+
+	// update
 	T update(T obj1, T obj2);
-	
-	//delete
+
+	// delete
 	String delete(String matricula);
-	
-	//deleteAll
+
+	// deleteAll
 	String deleteAll();
-	
+
 }

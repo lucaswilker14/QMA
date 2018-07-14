@@ -11,57 +11,59 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import daca.qma.models.Aluno;
+import daca.qma.security.CurrentUser;
 import daca.qma.services.AlunoService;
 
 @RestController
 @RequestMapping("/qma/aluno")
 public class AlunoRestController {
-	
-	//US1 - CRUD ALUNO
-	
+
+	// US1 - CRUD ALUNO
+
 	@Autowired
 	private AlunoService as;
-	
-	//Create - POST
-	@PostMapping
-	public Aluno cadastrarAluno(@RequestBody @Valid Aluno aluno){
-		return as.cadastrar(aluno);
-	}
-	
-	//Read - GET ALL
-	@GetMapping(value = "/listagem",  produces="application/json")
-	public @ResponseBody List<Aluno> retornarAlunos(){
+
+	// //Create - POST
+	// @PostMapping
+	// public Aluno cadastrarAluno(@RequestBody @Valid Aluno aluno){
+	// return as.cadastrar(aluno);
+	// }
+
+	// Read - GET ALL
+	@GetMapping(value = "/listagem", produces = "application/json")
+	public @ResponseBody List<Aluno> retornarAlunos() {
 		return as.findAll();
 	}
-	
-	//Read - GET MATRICULA
+
+	// Read - GET MATRICULA
 	@GetMapping("/{matricula}")
-	public Aluno buscarAlunoMatricula(@PathVariable("matricula") String matricula){
+	public Aluno buscarAlunoMatricula(@PathVariable("matricula") String matricula) {
 		return as.findByMatricula(matricula);
 	}
-	
-	//Update - PUT
+
+	// Update - PUT
 	@PutMapping("/{matricula}")
-	public Aluno editarAluno(@PathVariable("matricula") String matricula, @RequestBody @Valid Aluno aluno){
+	public Aluno editarAluno(@PathVariable("matricula") String matricula, @RequestBody @Valid Aluno aluno) {
 		Aluno novo_aluno = as.findByMatricula(matricula);
 		return as.update(novo_aluno, aluno);
-		
+
 	}
-	
-	//Delete - DELETE
+
+	// Delete - DELETE
 	@DeleteMapping("/{matricula}")
-	public String deletarAluno(@PathVariable("matricula") String matricula){
+	public String deletarAluno(@PathVariable("matricula") String matricula) {
 		return as.delete(matricula);
 	}
-	
-	//Delete ALL
+
+	// Delete ALL
 	@DeleteMapping("/deleteAll")
-	public String deleteAll(){
+	public String deleteAll() {
 		return as.deleteAll();
 	}
 }

@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import daca.qma.models.Tutor;
 
 @Repository
-public interface TutorRepository extends JpaRepository<Tutor, Long>{
+public interface TutorRepository extends JpaRepository<Tutor, Long> {
 	Tutor findByMatricula(String matricula);
 }
