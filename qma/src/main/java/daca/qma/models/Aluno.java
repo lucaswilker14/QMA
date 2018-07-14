@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
@@ -51,6 +52,9 @@ public class Aluno implements Serializable {
 	@JsonIgnore
 	// @NotBlank
 	private String senha;
+
+	@Column(name = "isTutor")
+	private boolean isTutor;
 
 	// @ManyToMany
 	// @JoinTable(name = "tb_alunos_tutores", joinColumns = @JoinColumn(name =
@@ -151,4 +155,11 @@ public class Aluno implements Serializable {
 		this.senha = senha;
 	}
 
+	public boolean isTutor() {
+		return isTutor;
+	}
+
+	public void setTutor(boolean isTutor) {
+		this.isTutor = isTutor;
+	}
 }
