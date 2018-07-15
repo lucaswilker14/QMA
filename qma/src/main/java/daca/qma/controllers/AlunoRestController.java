@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 import daca.qma.models.Aluno;
 import daca.qma.security.CurrentUser;
 import daca.qma.services.AlunoService;
+import daca.qma.services.TutorService;
 
 @RestController
 @RequestMapping("/qma/aluno")
@@ -28,6 +29,9 @@ public class AlunoRestController {
 
 	@Autowired
 	private AlunoService as;
+
+	@Autowired
+	private TutorService ts;
 
 	// //Create - POST
 	// @PostMapping
@@ -58,7 +62,11 @@ public class AlunoRestController {
 	// Delete - DELETE
 	@DeleteMapping("/{matricula}")
 	public String deletarAluno(@PathVariable("matricula") String matricula) {
-		return as.delete(matricula);
+		if (as.isTutor(matricula)) {
+			String b = ts.delete(matricula); // primeiro remove ele da tabela de tutores			
+		}
+		String a = as.delete(matricula); // depois remove o aluno
+		return a;
 	}
 
 	// Delete ALL

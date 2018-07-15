@@ -86,4 +86,8 @@ public class AlunoService implements /* AlunoServiceInterface */ Crud<Aluno> {
 	public boolean verificaMatricula(String email) {
 		return ar.existsByMatricula(email);
 	}
+	
+	public boolean isTutor(String matricula){
+		return ar.findByMatricula(matricula).isTutor();
+	}
 }
