@@ -1,7 +1,6 @@
 qmaApp.config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
 
     $routeProvider.when('/signin', {
-
         templateUrl: '../components/signin/signin.html',
         controller: 'signinController'
 
