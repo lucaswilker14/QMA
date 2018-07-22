@@ -59,7 +59,7 @@ public class AuthController {
 	// CADASTRAR ALUNO NO SISTEMA
 	@PostMapping("/signup")
 	public ResponseEntity<?> registerUser(@RequestBody SignUpRequest signUpRequest) {
-
+		
 		if (as.verificaMatricula(signUpRequest.getMatricula())) {
 			return new ResponseEntity(new ApiResponse(false, "Username is already taken!"), HttpStatus.BAD_REQUEST);
 		}
