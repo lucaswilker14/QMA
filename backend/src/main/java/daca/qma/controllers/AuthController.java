@@ -1,3 +1,4 @@
+
 package daca.qma.controllers;
 
 import java.net.URI;
@@ -47,6 +48,16 @@ public class AuthController {
 	@PostMapping("/signin")
 	public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
 
+		if (!(as.verificaMatricula(loginRequest.getMatricula()))) {
+			return new ResponseEntity(new ApiResponse(false, "Matricula Inválida!"), HttpStatus.BAD_REQUEST);
+		}
+		
+		boolean a = passwordEncoder.matches(loginRequest.getSenha(), as.findByMatricula(loginRequest.getMatricula()).getSenha());
+		
+		if (!a) {
+			return new ResponseEntity(new ApiResponse(false, "Senha Inválida!"), HttpStatus.BAD_REQUEST);
+		}
+		
 		Authentication authentication = authenticationManager.authenticate(
 				new UsernamePasswordAuthenticationToken(loginRequest.getMatricula(), loginRequest.getSenha()));
 
@@ -63,7 +74,7 @@ public class AuthController {
 		if (as.verificaMatricula(signUpRequest.getMatricula())) {
 			return new ResponseEntity(new ApiResponse(false, "Username is already taken!"), HttpStatus.BAD_REQUEST);
 		}
-
+		
 		if (as.verificaEmail(signUpRequest.getEmail())) {
 			return new ResponseEntity(new ApiResponse(false, "Email Address already in use!"), HttpStatus.BAD_REQUEST);
 		}

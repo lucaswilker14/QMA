@@ -39,7 +39,7 @@ public class AlunoService implements /* AlunoServiceInterface */ Crud<Aluno> {
 	public Aluno findByMatriculaOrEmail(String matriculaOrEmail) {
 		return ar.findByMatriculaOrEmail(matriculaOrEmail, matriculaOrEmail);
 	}
-
+	
 	@Override
 	public Aluno update(Aluno novo_aluno, Aluno aluno) {
 
@@ -85,6 +85,10 @@ public class AlunoService implements /* AlunoServiceInterface */ Crud<Aluno> {
 
 	public boolean verificaMatricula(String email) {
 		return ar.existsByMatricula(email);
+	}
+	
+	public boolean verificaSenha(String senha){
+		return ar.existsBySenha(senha);
 	}
 	
 	public boolean isTutor(String matricula){
