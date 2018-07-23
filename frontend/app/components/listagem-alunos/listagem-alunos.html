@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body ng-controller="listagemController">
+    <div ng-repeat="aluno in alunos">
+        {{aluno.matricula}}
+    </div>
+
+    <div>
+        <md-button ng-click="logout()" class="md-raised md-warn">Logout</md-button>
+    </div>
+</body>
+</html>
