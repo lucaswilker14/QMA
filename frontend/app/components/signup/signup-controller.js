@@ -19,16 +19,17 @@ qmaApp.controller("signupController", function ($scope, $http, $mdDialog, $locat
         }
 
         return $http(req).then(function successLogin(response) {
-            //chama o popup
-            $scope.alertDialog();
             //vai pra tela de login
             $location.path('/signin');
+            //chama o popup
+            $scope.alertDialog();
         }, function errorLogin(response) {
             console.log(response.status);
             console.log(response);
         });
     }
 
+    //quando o aluno eh cadastrado com sucesso.
     $scope.alertDialog = function casdastroOK(ev){
         $mdDialog.show(
             $mdDialog.alert()
