@@ -15,6 +15,10 @@ import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
+@ApiModel(value = "Modelo - Aluno")
 @Entity
 @Table(name = "tb_aluno")
 public class Aluno implements Serializable {
@@ -25,34 +29,42 @@ public class Aluno implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	// @NotBlank
+	@ApiModelProperty(value = "Matricula do Aluno")
+	@NotBlank
 	@Column(name = "Matricula")
 	private String matricula;
 
-	// @NotBlank
+	@ApiModelProperty(value = "Nome completo do Aluno")
+	@NotBlank
 	@Column(name = "Nome_Aluno")
 	private String nome_aluno;
 
-	// @NotBlank
+	@ApiModelProperty(value = "Codigo do Curso")
+	@NotBlank
 	@Column(name = "Codigo_Curso")
 	private String codigo_curso;
 
+	@ApiModelProperty(value = "Telefone do Aluno")
 	@Size(min = 10, max = 10)
 	@Column(name = "Telefone")
 	private String telefone;
 
-	// @NotBlank
+	@ApiModelProperty(value = "Email")
+	@NotBlank
 	@Email
 	@Column(name = "Email")
 	private String email;
 
+	@ApiModelProperty(value = "Nota de avaliacao do aluno retornadas pelos os Tutores")
 	@Column(name = "Nota_Avalicao")
 	private float nota_avaliacao = 5;
 
+	@ApiModelProperty(value = "Senha para logar no sistema")
 	@JsonIgnore
-	// @NotBlank
+	@NotBlank
 	private String senha;
 
+	@ApiModelProperty(value = "Se um aluno eh tutor ou nao")
 	@Column(name = "isTutor")
 	private boolean isTutor;
 
@@ -72,7 +84,8 @@ public class Aluno implements Serializable {
 		this.senha = senha;
 	}
 
-	public Aluno() {}
+	public Aluno() {
+	}
 
 	@Override
 	public String toString() {
