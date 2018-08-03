@@ -10,6 +10,9 @@ public interface Crud<T> {
 	// getAll
 	List<T> findAll();
 
+	//getAllByDisciplina
+	List<T> findAllByDisciplina(String disciplina);
+	
 	// getId
 	T findByid(Long id);
 

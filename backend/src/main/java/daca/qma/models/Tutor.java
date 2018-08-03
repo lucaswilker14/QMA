@@ -16,6 +16,10 @@ import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Range;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
+@ApiModel("Modelo - TUTOR")
 @Entity
 @Table(name = "tb_tutor")
 public class Tutor implements Serializable {
@@ -26,24 +30,33 @@ public class Tutor implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
-	// @NotBlank
+	@ApiModelProperty(value="Matricula do Tutor", notes="Igual a matricula do Aluno")
+	@NotBlank
 	private String matricula;
 
+	@ApiModelProperty(value="Disciplina que o tutor ensina")
 	@NotBlank
 	private String disciplina;
 
+	@ApiModelProperty(value="Nota de proficiencia na disciplina na qual ele ensina")
 	@NotNull
 	@Range(min = 1, max = 5)
 	private float proficiencia;
 
+	@ApiModelProperty(value="Nota de avaliacao pelos alunos")
 	private float nota_aval_tutor = 4;
 
+	@ApiModelProperty(value="Quantidade de dinheiro recebido")
 	private float dinheiro = 0;
+	
+	@OneToOne
+	private Ajuda pedido_ajuda;
 
 	@OneToOne(cascade = CascadeType.MERGE)
 	@JoinTable(name = "tb_aluno_tutor", joinColumns = @JoinColumn(name = "fk_tutor_id"), inverseJoinColumns = @JoinColumn(name = "fk_aluno_id"))
 	private Aluno aluno_tutor;
 
+	
 	public Tutor() {
 	}
 
@@ -62,6 +75,13 @@ public class Tutor implements Serializable {
 	// return impressao;
 	// }
 
+	@Override
+	public String toString() {
+		String impressao;
+		impressao = this.matricula + " - " + this.disciplina + " - " + this.proficiencia;
+		return impressao;
+	}
+	
 	public Long getId() {
 		return id;
 	}
@@ -121,4 +141,15 @@ public class Tutor implements Serializable {
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
+
+	public Ajuda getPedido_ajuda() {
+		return pedido_ajuda;
+	}
+
+	public void setPedido_ajuda(Ajuda pedido_ajuda) {
+		this.pedido_ajuda = pedido_ajuda;
+	}
+	
+	
+
 }

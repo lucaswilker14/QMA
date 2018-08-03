@@ -94,4 +94,9 @@ public class AlunoService implements /* AlunoServiceInterface */ Crud<Aluno> {
 	public boolean isTutor(String matricula){
 		return ar.findByMatricula(matricula).isTutor();
 	}
+
+	@Override
+	public List<Aluno> findAllByDisciplina(String disciplina) {
+		return null;
+	}
 }
