@@ -2,11 +2,13 @@ package daca.qma.models;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.validation.constraints.Email;
@@ -25,15 +27,15 @@ public class Aluno implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	// @NotBlank
+	@NotBlank
 	@Column(name = "Matricula")
 	private String matricula;
 
-	// @NotBlank
+	@NotBlank
 	@Column(name = "Nome_Aluno")
 	private String nome_aluno;
 
-	// @NotBlank
+	@NotBlank
 	@Column(name = "Codigo_Curso")
 	private String codigo_curso;
 
@@ -41,7 +43,7 @@ public class Aluno implements Serializable {
 	@Column(name = "Telefone")
 	private String telefone;
 
-	// @NotBlank
+	@NotBlank
 	@Email
 	@Column(name = "Email")
 	private String email;
@@ -50,11 +52,14 @@ public class Aluno implements Serializable {
 	private float nota_avaliacao = 5;
 
 	@JsonIgnore
-	// @NotBlank
+	@NotBlank
 	private String senha;
 
 	@Column(name = "isTutor")
 	private boolean isTutor;
+
+	@OneToOne
+	private Ajuda pedido_ajuda;
 
 	// @ManyToMany
 	// @JoinTable(name = "tb_alunos_tutores", joinColumns = @JoinColumn(name =
@@ -72,7 +77,8 @@ public class Aluno implements Serializable {
 		this.senha = senha;
 	}
 
-	public Aluno() {}
+	public Aluno() {
+	}
 
 	@Override
 	public String toString() {
@@ -162,4 +168,13 @@ public class Aluno implements Serializable {
 	public void setTutor(boolean isTutor) {
 		this.isTutor = isTutor;
 	}
+
+	public Ajuda getPedido_ajuda() {
+		return pedido_ajuda;
+	}
+
+	public void setPedido_ajuda(Ajuda pedido_ajuda) {
+		this.pedido_ajuda = pedido_ajuda;
+	}
+
 }

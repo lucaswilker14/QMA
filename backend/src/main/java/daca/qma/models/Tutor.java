@@ -26,7 +26,7 @@ public class Tutor implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
-	// @NotBlank
+	 @NotBlank
 	private String matricula;
 
 	@NotBlank
@@ -39,11 +39,15 @@ public class Tutor implements Serializable {
 	private float nota_aval_tutor = 4;
 
 	private float dinheiro = 0;
+	
+	@OneToOne
+	private Ajuda pedido_ajuda;
 
 	@OneToOne(cascade = CascadeType.MERGE)
 	@JoinTable(name = "tb_aluno_tutor", joinColumns = @JoinColumn(name = "fk_tutor_id"), inverseJoinColumns = @JoinColumn(name = "fk_aluno_id"))
 	private Aluno aluno_tutor;
 
+	
 	public Tutor() {
 	}
 
@@ -62,6 +66,13 @@ public class Tutor implements Serializable {
 	// return impressao;
 	// }
 
+	@Override
+	public String toString() {
+		String impressao;
+		impressao = this.matricula + " - " + this.disciplina + " - " + this.proficiencia;
+		return impressao;
+	}
+	
 	public Long getId() {
 		return id;
 	}
@@ -121,4 +132,15 @@ public class Tutor implements Serializable {
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
+
+	public Ajuda getPedido_ajuda() {
+		return pedido_ajuda;
+	}
+
+	public void setPedido_ajuda(Ajuda pedido_ajuda) {
+		this.pedido_ajuda = pedido_ajuda;
+	}
+	
+	
+
 }
