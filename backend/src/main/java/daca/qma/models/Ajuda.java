@@ -1,7 +1,5 @@
 package daca.qma.models;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -12,6 +10,10 @@ import javax.validation.constraints.NotBlank;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
+@ApiModel(value="Modelo - Ajuda")
 @Entity
 @Table(name="tb_ajuda")
 public class Ajuda {
@@ -20,18 +22,25 @@ public class Ajuda {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
+	@ApiModelProperty(value="Aluno que solicita a ajuda")
 	@OneToOne
 	private Aluno aluno_ajuda; //aluno que pediu a ajuda
 	
+	@ApiModelProperty(value="Tutor que é escolhido para ajudar o aluno")
 	@OneToOne
 	private Tutor tutor_ajuda; //tutor que vai ajudar o aluno
 	
+	@ApiModelProperty(value="Disciplina que o aluno necessita de ajuda")
+	@NotBlank
 	private String disciplina;
 	
+	@ApiModelProperty("Horario da ajuda")
 	private String horario;
 	
+	@ApiModelProperty("Local da ajuda")
 	private String local;
 	
+	@ApiModelProperty("Tipo da ajuda podendo ser Presencial ou Online")
 	private String ajudaTipo;
 	
 	public Ajuda(){}

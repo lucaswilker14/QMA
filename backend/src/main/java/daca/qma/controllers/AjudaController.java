@@ -16,7 +16,11 @@ import daca.qma.models.Tutor;
 import daca.qma.services.AjudaService;
 import daca.qma.services.AlunoService;
 import daca.qma.services.TutorService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiModelProperty;
+import io.swagger.annotations.ApiOperation;
 
+@Api(value="REST API - Solicitacao de Ajuda")
 @RestController
 @RequestMapping("/qma/ajuda")
 public class AjudaController {
@@ -32,11 +36,13 @@ public class AjudaController {
 	@Autowired
 	private AjudaService ajuda_ser;
 
+	@ApiOperation(value="Solicitacao de ajuda do aluno por meio do tipo presencial")
 	@PostMapping("/presencial/{matricula}")
 	public Ajuda ajudaPresencial(@PathVariable("matricula") String matricula_aluno, @RequestBody Ajuda ajuda_detalhe) {
 		return process(matricula_aluno, ajuda_detalhe, AjudaTipo.PRESENCIAL.getTipo());
 	}
 
+	@ApiOperation(value="Solicitacao de ajuda do aluno por meio do tipo Online", notes="Não requer informações de horário")
 	@PostMapping("/online/{matricula}")
 	public Ajuda ajudaOnline(@PathVariable("matricula") String matricula_aluno, @RequestBody Ajuda ajuda_detalhe) {
 		return process(matricula_aluno, ajuda_detalhe, AjudaTipo.ONLINE.getTipo());
