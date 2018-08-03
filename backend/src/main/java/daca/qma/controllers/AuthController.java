@@ -27,7 +27,10 @@ import daca.qma.payload.SignUpRequest;
 import daca.qma.repository.AlunoRepository;
 import daca.qma.security.JwtTokenProvider;
 import daca.qma.services.AlunoService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 
+@Api("REST API - Auth")
 @RestController
 @RequestMapping("/qma/auth")
 public class AuthController {
@@ -45,6 +48,7 @@ public class AuthController {
 	JwtTokenProvider tokenProvider;
 
 	// LOGIN
+	@ApiOperation(value="Login no sistema QMA", notes="Precisa ter sido cadastrado antes e autorizado")
 	@PostMapping("/signin")
 	public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
 
@@ -68,6 +72,7 @@ public class AuthController {
 	}
 
 	// CADASTRAR ALUNO NO SISTEMA
+	@ApiOperation(value="Cadastro de um usuario no sistema")
 	@PostMapping("/signup")
 	public ResponseEntity<?> registerUser(@RequestBody SignUpRequest signUpRequest) {
 		

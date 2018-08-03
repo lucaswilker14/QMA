@@ -16,6 +16,10 @@ import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Range;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
+@ApiModel("Modelo - TUTOR")
 @Entity
 @Table(name = "tb_tutor")
 public class Tutor implements Serializable {
@@ -26,18 +30,23 @@ public class Tutor implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
-	 @NotBlank
+	@ApiModelProperty(value="Matricula do Tutor", notes="Igual a matricula do Aluno")
+	@NotBlank
 	private String matricula;
 
+	@ApiModelProperty(value="Disciplina que o tutor ensina")
 	@NotBlank
 	private String disciplina;
 
+	@ApiModelProperty(value="Nota de proficiencia na disciplina na qual ele ensina")
 	@NotNull
 	@Range(min = 1, max = 5)
 	private float proficiencia;
 
+	@ApiModelProperty(value="Nota de avaliacao pelos alunos")
 	private float nota_aval_tutor = 4;
 
+	@ApiModelProperty(value="Quantidade de dinheiro recebido")
 	private float dinheiro = 0;
 	
 	@OneToOne
