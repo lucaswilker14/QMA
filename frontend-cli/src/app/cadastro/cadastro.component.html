@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<div class="align-content-center">
+  <br><br><br>
+  <form class="form-signup">
+    <p class="h4 mb-4 text-center">Cadastro</p>
+    <br><br>
+    <div class="form-row mb-4">
+      <div class="col">
+        <input type="text" id="nomeInput" class="form-control" placeholder="Nome" required autofocus>
+      </div>
+      <div class="col">
+        <input type="text" id="sobrenomeInput" class="form-control" placeholder="Sobrenome" required autofocus>
+      </div>
+    </div>
+
+    <input type="text" id="matriculaInput" class="form-control mb-4" placeholder="Matricula da Instituição" required
+           autofocus>
+
+    <input type="text" id="ccInput" class="form-control mb-4" placeholder="Código do Curso" required autofocus>
+
+    <input type="email" id="emailInput" class="form-control mb-4" placeholder="E-mail" required autofocus>
+
+    <input type="password" id="senhaInput" class="form-control" placeholder="Senha"
+           aria-describedby="defaultRegisterFormPasswordHelpBlock" required autofocus>
+    <small id="helpBlockText" class="form-text text-muted mb-4">
+      No mínimo 8 caracteres
+    </small>
+
+    <input type="text" id="defaultRegisterPhonePassword" class="form-control" placeholder="Telefone"
+           aria-describedby="defaultRegisterFormPhoneHelpBlock">
+    <small id="defaultRegisterFormPhoneHelpBlock" class="form-text text-muted mb-4">
+      Opcional
+    </small>
+
+    <div class="form-row mb-4">
+      <div class="col">
+        <a class="btn btn-outline-primary my-4 btn-block" routerLink="/login">Cancelar</a>
+      </div>
+      <div class="col">
+        <button class="btn btn-info my-4 btn-block" type="submit">Cadastrar</button>
+      </div>
+    </div>
+  </form>
+</div>
