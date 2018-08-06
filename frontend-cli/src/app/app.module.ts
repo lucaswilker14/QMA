@@ -1,11 +1,14 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
 
-import { AppComponent } from './app.component';
-import { CadastroComponent } from './cadastro/cadastro.component';
-import { LoginComponent } from './login/login.component';
-import { ListagemAlunosComponent } from './listagem-alunos/listagem-alunos.component';
-import {routing} from './app.routing';
+import {AppComponent} from './app.component';
+import {CadastroComponent} from './cadastro/cadastro.component';
+import {LoginComponent} from './login/login.component';
+import {ListagemAlunosComponent} from './listagem-alunos/listagem-alunos.component';
+import {AppRoutingModule} from './app.routing.module';
+import {FormsModule} from '@angular/forms';
+import {CadastroService} from './cadastro/cadastro.service';
+import {HttpModule} from '@angular/http';
 
 @NgModule({
   declarations: [
@@ -15,10 +18,14 @@ import {routing} from './app.routing';
     ListagemAlunosComponent
   ],
   imports: [
+    FormsModule,
     BrowserModule,
-    routing
+    AppRoutingModule,
+    HttpModule
+
   ],
-  providers: [],
+  providers: [CadastroService],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

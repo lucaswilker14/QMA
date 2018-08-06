@@ -1,4 +1,4 @@
-import {ModuleWithProviders} from '@angular/core';
+import {ModuleWithProviders, NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 
 import {LoginComponent} from './login/login.component';
@@ -12,5 +12,8 @@ const APP_ROUTES: Routes = [
   { path: 'listagem-alunos', component: ListagemAlunosComponent}
 ];
 
-
-export const routing: ModuleWithProviders = RouterModule.forRoot(APP_ROUTES);
+@NgModule({
+  imports: [RouterModule.forRoot(APP_ROUTES)],
+  exports: [RouterModule]
+})
+export class AppRoutingModule {}
