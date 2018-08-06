@@ -9,7 +9,8 @@ import {CadastroService} from './cadastro.service';
 })
 export class CadastroComponent implements OnInit {
 
-  sobrenome = '';
+  // sobrenome = '';
+  // nome_completo = '';
   aluno: any = {
     matricula: '',
     nome_aluno: '',
@@ -27,7 +28,6 @@ export class CadastroComponent implements OnInit {
 
   cadastrarAluno() {
     // console.log(this.aluno);
-    this.aluno.nome_aluno = this.aluno.nome_aluno + ' ' + this.sobrenome;
     this.cadastroService.cadastrarAluno(this.aluno);
   }
 

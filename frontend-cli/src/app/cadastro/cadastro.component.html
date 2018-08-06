@@ -9,9 +9,9 @@
       <div class="col">
         <input [(ngModel)]="aluno.nome_aluno" name="nome_aluno" type="text" id="nomeInput" class="form-control" placeholder="Nome" required autofocus>
       </div>
-      <div class="col">
-        <input [(ngModel)]="sobrenome" name="sobrenome" type="text" id="sobrenomeInput" class="form-control" placeholder="Sobrenome" required autofocus>
-      </div>
+      <!--<div class="col">-->
+        <!--<input [(ngModel)]="sobrenome" name="sobrenome" type="text" id="sobrenomeInput" class="form-control" placeholder="Sobrenome" required autofocus>-->
+      <!--</div>-->
     </div>
 
     <input [(ngModel)]="aluno.matricula" name="matricula" type="text" id="matriculaInput" class="form-control mb-4" placeholder="Matricula da Instituição" required
@@ -35,10 +35,10 @@
 
     <div class="form-row mb-4">
       <div class="col">
-        <a class="btn btn-outline-primary my-4 btn-block" routerLink="/login">Cancelar</a>
+        <a class="btn btn-outline-dark my-4 btn-block" routerLink="/login">Cancelar</a>
       </div>
       <div class="col">
-        <button class="btn btn-info my-4 btn-block" type="submit" (click)="cadastrarAluno()">Cadastrar</button>
+        <button class="btn btn-dark my-4 btn-block" type="submit" (click)="cadastrarAluno()">Cadastrar</button>
       </div>
     </div>
   </form>
