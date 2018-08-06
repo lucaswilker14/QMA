@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<div class="align-content-center">
+  <br><br><br>
+  <form class="form-signin">
+    <p class="h3 mb-4 text-center">Bem-vindo ao QMA</p>
+    <p class="h5 mb-4 text-center">Login</p>
+
+    <div class="alert alert-danger alert-dismissible fade show" role="alert" *ngIf="error404">
+      <strong>Matricula Inválida!</strong>
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+
+    <div class="alert alert-danger alert-dismissible fade show" role="alert" *ngIf="error400">
+      <strong>Senha Inválida!</strong>
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+
+    <!-- Matricula -->
+    <input [(ngModel)]="userCredencials.matricula" name="login" type="email" id="matriculaInput" class="form-control mb-4" placeholder="Matricula">
+    <!-- Senha -->
+    <input [(ngModel)]="userCredencials.senha" name="senha" type="password" id="senhaInput" class="form-control mb-4" placeholder="Senha">
+
+    <!-- Sign in button -->
+    <div class="text-center">
+      <button class="btn btn-block btn-dark my-4" type="submit" (click)="login()">Entrar</button>
+      <!-- Register -->
+      <p>Não possui cadastro ?
+        <a routerLink="/cadastro">Cadastre-se</a>
+      </p>
+    </div>
+  </form>
+</div>
+
