@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {LoginService} from './login.service';
+import {AuthService} from './auth.service';
 import {Router} from '@angular/router';
 import {Observable} from 'rxjs';
 import {error} from 'selenium-webdriver';
@@ -20,7 +20,7 @@ export class LoginComponent implements OnInit {
     error404 = false; //erro pra matricula
     error400 = false; //erro pra senha
 
-    constructor(private loginService: LoginService, private router: Router) {
+    constructor(private loginService: AuthService, private router: Router) {
     }
 
     ngOnInit() {
@@ -28,7 +28,7 @@ export class LoginComponent implements OnInit {
 
     login() {
         this.loginService.login(this.userCredencials).subscribe((respose) => {
-            this.router.navigate(['listagem-alunos']);
+            this.router.navigate(['/listagem-alunos']);
             console.log(respose['status']);
             }, (error1: HttpErrorResponse) => {
                 if (error1['status'] === 404) {

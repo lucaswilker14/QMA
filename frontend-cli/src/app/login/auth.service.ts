@@ -5,11 +5,10 @@ import {Router} from '@angular/router';
 import {Observable} from 'rxjs';
 
 
-@Injectable({
-  providedIn: 'root'
-})
-export class LoginService {
+@Injectable()
+export class AuthService {
 
+    private usuarioAutenticado = false;
     public token: string;
     private headers = new Headers({ 'Content-Type': 'application/json' });
     private options = new RequestOptions({ headers: this.headers });
@@ -29,6 +28,7 @@ export class LoginService {
             if (_token) {
                 this.token = _token;
                 localStorage.setItem('currentUser', JSON.stringify({ username: userCredencials.matricula, token: _token }));
+                this.usuarioAutenticado = true;
             }
         });
         return request;
@@ -38,7 +38,12 @@ export class LoginService {
         // Limpa o token removendo o usuário do local store para efetuar o logout
         this.token = null;
         localStorage.removeItem('currentUser');
+        this.usuarioAutenticado = false;
         this.router.navigate(['/login']);
+    }
+
+    getUsuarioAutenticado() {
+        return this.usuarioAutenticado;
     }
 
 }

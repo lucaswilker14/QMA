@@ -9,6 +9,8 @@ import {AppRoutingModule} from './app.routing.module';
 import {FormsModule} from '@angular/forms';
 import {CadastroService} from './cadastro/cadastro.service';
 import {HttpModule} from '@angular/http';
+import {AuthGuard} from './guards/auth.guard';
+import {AuthService} from './login/auth.service';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,7 @@ import {HttpModule} from '@angular/http';
     HttpModule
 
   ],
-  providers: [CadastroService],
+  providers: [CadastroService, AuthService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule {
