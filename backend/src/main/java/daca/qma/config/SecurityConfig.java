@@ -43,6 +43,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Autowired
 	private JwtAuthenticationEntryPoint unauthorizedHandler;
+	
+	private static final String[] SWAGGER_URL = {
+			"/v2/api-docs",
+            "/swagger-resources",
+            "/swagger-resources/**",
+            "/configuration/ui",
+            "/configuration/security",
+            "/swagger-ui.html",
+            "/webjars/**"
+	};
 
 	@Bean
 	public JwtAuthenticationFilter jwtAuthenticationFilter() {
@@ -69,7 +79,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		http.cors().and().csrf().disable().exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
 				.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().authorizeRequests()
-				.antMatchers("/qma/auth/**").permitAll().anyRequest().authenticated();
+				.antMatchers("/qma/auth/**").permitAll().antMatchers(SWAGGER_URL).permitAll().anyRequest().authenticated();
 
 		// add the jwt filter
 		http.addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);

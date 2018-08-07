@@ -20,7 +20,10 @@ import daca.qma.models.Aluno;
 import daca.qma.security.CurrentUser;
 import daca.qma.services.AlunoService;
 import daca.qma.services.TutorService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 
+@Api(value="API REST - Aluno")
 @RestController
 @RequestMapping("/qma/aluno")
 public class AlunoRestController {
@@ -40,18 +43,22 @@ public class AlunoRestController {
 	// }
 
 	// Read - GET ALL
+	@ApiOperation(value="Retorna todos os alunos cadastrado no sistema")
 	@GetMapping(value = "/listagem", produces = "application/json")
 	public @ResponseBody List<Aluno> retornarAlunos() {
+		System.out.println("OK OK OK OK OK OKOK ");
 		return as.findAll();
 	}
 
 	// Read - GET MATRICULA
+	@ApiOperation(value="Busca por um aluno pela matricula e o retorna")
 	@GetMapping("/{matricula}")
 	public Aluno buscarAlunoMatricula(@PathVariable("matricula") String matricula) {
 		return as.findByMatricula(matricula);
 	}
 
 	// Update - PUT
+	@ApiOperation(value="Atualiza um aluno.", notes="Busca-o pela matricula")
 	@PutMapping("/{matricula}")
 	public Aluno editarAluno(@PathVariable("matricula") String matricula, @RequestBody @Valid Aluno aluno) {
 		Aluno novo_aluno = as.findByMatricula(matricula);
@@ -60,6 +67,7 @@ public class AlunoRestController {
 	}
 
 	// Delete - DELETE
+	@ApiOperation(value="Delete um aluno", notes="Busca-o pela matricula")
 	@DeleteMapping("/{matricula}")
 	public String deletarAluno(@PathVariable("matricula") String matricula) {
 		if (as.isTutor(matricula)) {
@@ -70,6 +78,7 @@ public class AlunoRestController {
 	}
 
 	// Delete ALL
+	@ApiOperation(value="Deleta todos os alunos do sistema")
 	@DeleteMapping("/deleteAll")
 	public String deleteAll() {
 		return as.deleteAll();

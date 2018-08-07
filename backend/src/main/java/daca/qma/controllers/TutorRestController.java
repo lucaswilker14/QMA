@@ -24,7 +24,10 @@ import daca.qma.security.AlunoPrincipal;
 import daca.qma.security.CurrentUser;
 import daca.qma.services.AlunoService;
 import daca.qma.services.TutorService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 
+@Api(value="REST API - Tutor")
 @RestController
 @RequestMapping("/qma/tutor")
 public class TutorRestController {
@@ -35,6 +38,7 @@ public class TutorRestController {
 	@Autowired
 	private TutorService ts;
 
+	@ApiOperation(value="Cadastra um aluno para ser um novo Tutor")
 	@PostMapping("/tornarTutor")
 	public Tutor tornarTutor(@RequestBody @Valid Tutor obj, @CurrentUser AlunoPrincipal alunoP)
 			throws TutorRegistrationException {
@@ -70,22 +74,26 @@ public class TutorRestController {
 		}
 	}
 
+	@ApiOperation(value="Retorna um tutor cadastrado no sistema", notes="precisa ser autorizado e cadastrado como Tutor. Busca-o pela matricula")
 	@GetMapping("/{matricula}")
 	public Tutor buscarTutorMatricula(@PathVariable("matricula") String matricula_tutor) {
 		return ts.findByMatricula(matricula_tutor);
 	}
 
+	@ApiOperation(value="Retorna todos os tutores")
 	@GetMapping("/all")
 	public @ResponseBody List<Tutor> retornarTutores() {
 		return ts.findAll();
 	}
 
+	@ApiOperation(value="Deleta um tutor", notes="Matricula passada na url para busca-lo")
 	@DeleteMapping("/{matricula}")
 	public String deleteTutor(@PathVariable("matricula") String matricula) {
 		as.findByMatricula(matricula).setTutor(false);
 		return ts.delete(matricula);
 	}
 
+	@ApiOperation(value="Deleta todos os Tutores")
 	@DeleteMapping("/deleteAll")
 	public String deleteAll() {
 		return ts.deleteAll();

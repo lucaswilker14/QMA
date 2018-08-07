@@ -29,7 +29,12 @@ public class TutorService implements TutorServiceInterface, Crud<Tutor> {
 	public List<Tutor> findAll() {
 		return tr.findAll();
 	}
-
+	
+	@Override
+	public List<Tutor> findAllByDisciplina(String disciplina) {
+		return tr.findAllByDisciplina(disciplina);
+	}
+	
 	@Override
 	public String delete(String matricula) {
 		Tutor tutor = tr.findByMatricula(matricula);
@@ -60,5 +65,4 @@ public class TutorService implements TutorServiceInterface, Crud<Tutor> {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
 }
