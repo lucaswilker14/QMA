@@ -53,7 +53,7 @@ public class AuthController {
 	public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
 
 		if (!(as.verificaMatricula(loginRequest.getMatricula()))) {
-			return new ResponseEntity(new ApiResponse(false, "Matricula Inválida!"), HttpStatus.BAD_REQUEST);
+			return new ResponseEntity(new ApiResponse(false, "Matricula Inválida!"), HttpStatus.BAD_REQUEST.NOT_FOUND);
 		}
 		
 		boolean a = passwordEncoder.matches(loginRequest.getSenha(), as.findByMatricula(loginRequest.getMatricula()).getSenha());

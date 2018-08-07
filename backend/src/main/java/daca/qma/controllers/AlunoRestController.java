@@ -46,6 +46,7 @@ public class AlunoRestController {
 	@ApiOperation(value="Retorna todos os alunos cadastrado no sistema")
 	@GetMapping(value = "/listagem", produces = "application/json")
 	public @ResponseBody List<Aluno> retornarAlunos() {
+		System.out.println("OK OK OK OK OK OKOK ");
 		return as.findAll();
 	}
 
