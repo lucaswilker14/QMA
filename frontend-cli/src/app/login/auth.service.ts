@@ -4,7 +4,6 @@ import {environment} from '../../environments/environment';
 import {Router} from '@angular/router';
 import {Observable} from 'rxjs';
 
-
 @Injectable()
 export class AuthService {
 
@@ -14,7 +13,6 @@ export class AuthService {
     private options = new RequestOptions({ headers: this.headers });
 
     constructor(private http: Http, private router: Router) {
-        // Atribui o token se ele estiver salvo no local storage
         const currentUser = JSON.parse(localStorage.getItem('currentUser'));
         this.token = currentUser && currentUser.token;
     }
@@ -31,10 +29,10 @@ export class AuthService {
                 this.usuarioAutenticado = true;
             }
         });
-        return request;
+        return request
     }
 
-    logout(): void {
+    logout(): void {;
         // Limpa o token removendo o usuário do local store para efetuar o logout
         this.token = null;
         localStorage.removeItem('currentUser');
@@ -44,6 +42,15 @@ export class AuthService {
 
     getUsuarioAutenticado() {
         return this.usuarioAutenticado;
+    }
+
+    getAlunos() {
+        const token = 'Bearer ' + JSON.parse(localStorage.getItem('currentUser')).token;
+        const headers = new Headers({ 'Content-Type': 'application/json', 'Authorization': token });
+        const options = new RequestOptions({ headers: headers });
+        const myUrl: string = environment.url + '/aluno/listagem';
+        const request = this.http.get(myUrl, options);
+        return request;
     }
 
 }
