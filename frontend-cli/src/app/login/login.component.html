@@ -8,14 +8,14 @@
 
     <div class="alert alert-danger alert-dismissible fade show" role="alert" *ngIf="error404">
       <strong>Matricula Inválida!</strong>
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <button type="button" class="close" (click)="changeError404()" aria-label="Close">
         <span aria-hidden="true">&times;</span>
       </button>
     </div>
 
     <div class="alert alert-danger alert-dismissible fade show" role="alert" *ngIf="error400">
       <strong>Senha Inválida!</strong>
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <button type="button" class="close" (click)="changeError400()" aria-label="Close">
         <span aria-hidden="true">&times;</span>
       </button>
     </div>
